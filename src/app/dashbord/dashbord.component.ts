@@ -4,24 +4,40 @@ import { ArticleComponent } from '../article/article.component';
 import { Article } from '../models/article';
 import { ArticleService } from '../shared/article.service';
 import { UserService } from '../shared/user.service';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-dashbord',
   templateUrl: './dashbord.component.html',
   styleUrls: ['./dashbord.component.css']
 })
 
+
 export class DashbordComponent implements OnInit {
 
-  constructor(public dialog:MatDialog, private _userSerivce: UserService, private _articleService:ArticleService) { }
-  displayedColumns: string[] = ['title', 'description', 'creationDate'];
-  dataSource = this._articleService.findArticlesByUser();
+  constructor(public dialog:MatDialog, private _userService: UserService, private _articleService:ArticleService) { }
+  displayedColumns: string[] = ['title', 'description', 'creationDate', 'actions'];
+  dataSource = new MatTableDataSource(this._articleService.findArticlesByUser()) ;
   ngOnInit(): void {
 
   }
-  openDialog(){
-    let dialogRef =this.dialog.open(ArticleComponent);
+  addArticle(){
+    let dialogRef =this.dialog.open(ArticleComponent, {data : {action:'add'}});
     dialogRef.afterClosed().subscribe(result => {
-      this.dataSource = this._articleService.findArticlesByUser();
+      this.dataSource = new MatTableDataSource(this._articleService.findArticlesByUser());
     });
+  }
+  deleteArticle(row:Article){
+   this._articleService.deleteArticle(row.id);
+   this.dataSource = new MatTableDataSource(this._articleService.findArticlesByUser());
+  }
+  editArticle(row:Article){
+    let dialogRef =this.dialog.open(ArticleComponent, {data: {row, action: 'edit'}});
+    dialogRef.afterClosed().subscribe(result => {
+      this.dataSource = new MatTableDataSource(this._articleService.findArticlesByUser());
+    });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

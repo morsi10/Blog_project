@@ -1,5 +1,5 @@
-<h2 mat-dialog-title>Add Article</h2>
-<form class="example-form" [formGroup]="articleForm" (ngSubmit)="onSubmit(articleForm.value)">
+<h2 mat-dialog-title>{{data.action}} Article</h2>
+<form class="example-form" [formGroup]="articleForm" (ngSubmit)="onSubmit(articleForm.value, data)">
 <mat-dialog-content>
    
 
