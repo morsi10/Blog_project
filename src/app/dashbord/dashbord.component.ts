@@ -5,6 +5,7 @@ import { Article } from '../models/article';
 import { ArticleService } from '../shared/article.service';
 import { UserService } from '../shared/user.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashbord',
   templateUrl: './dashbord.component.html',
@@ -14,7 +15,8 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class DashbordComponent implements OnInit {
 
-  constructor(public dialog:MatDialog, private _userService: UserService, private _articleService:ArticleService) { }
+  constructor(public dialog:MatDialog, private _userService: UserService, 
+              private _articleService:ArticleService, private router: Router) { }
   displayedColumns: string[] = ['title', 'description', 'creationDate', 'actions'];
   dataSource = new MatTableDataSource(this._articleService.findArticlesByUser()) ;
   ngOnInit(): void {
@@ -39,5 +41,9 @@ export class DashbordComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
 }

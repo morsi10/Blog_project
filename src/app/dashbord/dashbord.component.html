@@ -1,6 +1,7 @@
 <mat-toolbar class="navbar">
     <div>My Blog</div>
     <span><button mat-button mat-raised-button (click)="addArticle()" color="primary">Add article</button></span>
+    <span><button mat-button mat-raised-button (click)="logout()" color="accent">Logout</button></span>
   </mat-toolbar>
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
