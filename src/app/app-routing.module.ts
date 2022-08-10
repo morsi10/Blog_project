@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArticleComponent } from './article/article.component';
+import { ArticlesComponent } from './articles/articles.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'register', component:RegisterComponent},
   { path: 'article', component: ArticleComponent},
   { path: 'dashboard', component:DashbordComponent, canActivate:[AuthGuard]},
+  { path: 'articles', component:ArticlesComponent ,  canActivate:[AuthGuard]},
   { path: '**', component:LoginComponent}
 ];
 
@@ -22,5 +24,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routingComponents = [
   LoginComponent,
-  RegisterComponent
+  RegisterComponent, ArticlesComponent
 ]

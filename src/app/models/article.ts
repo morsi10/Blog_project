@@ -4,4 +4,5 @@ export class Article {
     title: String;
     description : String;
     creationDate : Date;
+    image_url: String;
 }

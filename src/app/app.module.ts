@@ -10,7 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { ArticleComponent } from './article/article.component';
-
+import { HttpClientModule} from '@angular/common/http';
+import { ArticlesComponent } from './articles/articles.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { ArticleComponent } from './article/article.component';
     RegisterComponent,
     DashbordComponent,
     ArticleComponent,
-   
+    ArticlesComponent
   ],
   entryComponents: [ArticleComponent],
 
@@ -30,7 +31,9 @@ import { ArticleComponent } from './article/article.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-   FormsModule
+    FormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

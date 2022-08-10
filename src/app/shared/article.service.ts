@@ -9,6 +9,7 @@ export class ArticleService {
 
   constructor(private _userSerice: UserService) { }
   latestId;
+  ArticleImage;
   getLatestId(){
     let lastId:string = localStorage.getItem('LastId');
     if(lastId == null){
@@ -25,6 +26,7 @@ export class ArticleService {
     
     article.username = this._userSerice.getLoggedUser().username;
     article.creationDate = new Date().toLocaleDateString();
+    article.image_url = this.ArticleImage;
     const articleArr: Article[] = JSON.parse(localStorage.getItem('articleList'));
 
     if (articleArr !== null) {
@@ -69,9 +71,13 @@ export class ArticleService {
     const index = articleList.findIndex((object)=>{
       return object.id === article.id; 
   })
- 
+  article.image_url = this.ArticleImage;
     articleList[index] = article;
     localStorage.setItem('articleList', JSON.stringify(articleList));
     
+  }
+  getAll(){
+    const articleList: Article[] = JSON.parse(localStorage.getItem('articleList'));
+    return articleList;
   }
 }

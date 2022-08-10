@@ -46,4 +46,7 @@ export class DashbordComponent implements OnInit {
     localStorage.removeItem('token');
     this.router.navigate(['login']);
   }
+  viewArticles(){
+    this.router.navigate(['articles']);
+  }
 }

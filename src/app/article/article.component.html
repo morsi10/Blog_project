@@ -11,7 +11,12 @@
             <mat-label>Description</mat-label>
             <textarea matInput formControlName="description"> </textarea>
         </mat-form-field>
-       
+        <div class="full-width" appearance="fill">
+            <label style="display: block;">Image</label>
+            <input type="file" (change)="onSelectFile($event)">
+            <button mat-button  (click)="onUpload()">Upload</button>
+        </div>
+      <img [src]="url">
 
     
 </mat-dialog-content>

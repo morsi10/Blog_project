@@ -32,7 +32,7 @@ export class UserService {
   }
   getLoggedUser() : User{
     let loggedUser = JSON.parse(localStorage.getItem('token'))
-    console.log(loggedUser[0])
+    /*console.log(loggedUser[0])*/
     return loggedUser[0];
   }
 }
