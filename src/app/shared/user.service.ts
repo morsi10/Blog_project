@@ -9,6 +9,8 @@ export class UserService {
   constructor() { }
 
   AddUser(user){
+    user.profileCover ='';
+    user.profilePhoto = '';
     const oldRecords = localStorage.getItem('userList');
     if (oldRecords !== null){
       const userList: User[] = JSON.parse(oldRecords);
@@ -27,12 +29,35 @@ export class UserService {
     console.log(user);*/
     const userList: User[] = JSON.parse(localStorage.getItem('userList'));
     const found = userList.filter(data => {
-      return data.username === user.username && data.password === user.password});
+      return data.email === user.email && data.password === user.password});
       return found
   }
   getLoggedUser() : User{
-    let loggedUser = JSON.parse(localStorage.getItem('token'))
-    /*console.log(loggedUser[0])*/
-    return loggedUser[0];
+    
+    let loggedUser = JSON.parse(localStorage.getItem('token'));
+    console.log(loggedUser);
+    return loggedUser;
+  }
+  FindUserByEmail(email: String) : User[]{
+    /*console.log(user.password);
+     console.log(user);*/
+     const userList: User[] = JSON.parse(localStorage.getItem('userList'));
+     if(userList !== null){
+      const found = userList.filter(data => {
+        return data.email === email});
+        return found
+     }else{
+      return [];
+     }
+   }
+   editUser(user){
+    const userList: User[] = JSON.parse(localStorage.getItem('userList'));
+    const index = userList.findIndex((object)=>{
+      return object.email === user.email; 
+  })
+  //article.image_url = this.ArticleImage;
+  userList[index] = user;
+    localStorage.setItem('userList', JSON.stringify(userList));
+    
   }
 }

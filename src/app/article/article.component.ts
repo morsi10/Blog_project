@@ -28,6 +28,7 @@ export class ArticleComponent implements OnInit {
       this.articleForm.patchValue(this.data.row)
     }
   }
+  
   onSubmit(article, data)
   { 
     if(data.action == 'add'){

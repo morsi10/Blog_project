@@ -6,6 +6,7 @@ import { ArticleService } from '../shared/article.service';
 import { UserService } from '../shared/user.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 @Component({
   selector: 'app-dashbord',
   templateUrl: './dashbord.component.html',
@@ -14,13 +15,15 @@ import { Router } from '@angular/router';
 
 
 export class DashbordComponent implements OnInit {
-
+  opened =true;
+  currentUser: User ;
+  
   constructor(public dialog:MatDialog, private _userService: UserService, 
               private _articleService:ArticleService, private router: Router) { }
   displayedColumns: string[] = ['title', 'description', 'creationDate', 'actions'];
   dataSource = new MatTableDataSource(this._articleService.findArticlesByUser()) ;
   ngOnInit(): void {
-
+    this.currentUser = this._userService.getLoggedUser();
   }
   addArticle(){
     let dialogRef =this.dialog.open(ArticleComponent, {data : {action:'add'}});
@@ -48,5 +51,8 @@ export class DashbordComponent implements OnInit {
   }
   viewArticles(){
     this.router.navigate(['articles']);
+  }
+  ShowProfil(){
+    this.router.navigate(['profile']);
   }
 }

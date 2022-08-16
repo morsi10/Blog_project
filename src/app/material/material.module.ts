@@ -6,13 +6,21 @@ import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
 const MaterialComonents = [
   MatCardModule,
   MatButtonModule,
   MatInputModule,
   MatToolbarModule, 
   MatDialogModule,
-  MatTableModule
+  MatTableModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatListModule,
+  MatMenuModule
 ]
 @NgModule({
   declarations: [],

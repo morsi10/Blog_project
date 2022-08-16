@@ -24,7 +24,7 @@ export class ArticleService {
 
   AddArticle(article) {
     
-    article.username = this._userSerice.getLoggedUser().username;
+    article.username = this._userSerice.getLoggedUser().email;
     article.creationDate = new Date().toLocaleDateString();
     article.image_url = this.ArticleImage;
     const articleArr: Article[] = JSON.parse(localStorage.getItem('articleList'));
@@ -49,7 +49,7 @@ export class ArticleService {
     const articleList: Article[] = JSON.parse(localStorage.getItem('articleList'));
     if (articleList !== null) {
       const userArticles = articleList.filter(data => {
-        return data.username === this._userSerice.getLoggedUser().username
+        return data.username === this._userSerice.getLoggedUser().email
       });
       return userArticles;
     }
@@ -67,6 +67,7 @@ export class ArticleService {
     }
   }
   editArticle(article){
+    debugger;
     const articleList: Article[] = JSON.parse(localStorage.getItem('articleList'));
     const index = articleList.findIndex((object)=>{
       return object.id === article.id; 

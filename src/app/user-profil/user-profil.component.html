@@ -1,0 +1,43 @@
+<div class="header">
+  <mat-toolbar class="navbar">
+    <div>My Profile</div>
+  </mat-toolbar>
+</div>
+<mat-card class="example-card">
+  <div class="cover-container">
+    <input style="display: none" type="file" (change)="onSelectedFile($event,'cover')" #coverInput>
+    <img mat-card-image class="profile-cover" src="{{currentUser.profileCover}}" alt="Image not found">
+  <div class="cover-edit" (click)="coverInput.click()">
+    <button mat-button mat-raised-button  color="primary"><mat-icon>photo_camera</mat-icon><span>Edit cover image</span></button>
+  </div> 
+    
+  </div>
+  
+  <mat-card-header>
+    <mat-icon (click)="fileInput.click()" class="photo">photo_camera</mat-icon>
+    <input style="display: none" type="file" (change)="onSelectedFile($event,'photo')" #fileInput>
+    <img mat-card-avatar src="{{currentUser.profilePhoto}}">
+
+    <mat-card-title>
+      <div class="card-icon-edit">
+        <mat-icon align="right" (click)="openEditDialog()">edit</mat-icon>
+      </div>
+    </mat-card-title>
+
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="card-content-wrapper">
+      <h2>{{currentUser.firstName}} {{currentUser.lastName}}</h2>
+      <p>
+        Phone: {{currentUser.phone}} <br>
+        Company : {{currentUser.company}} <br>
+        Company Address : {{currentUser.companyAddress}}
+      </p>
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions>
+
+  </mat-card-actions>
+</mat-card>

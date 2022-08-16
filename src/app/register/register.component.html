@@ -1,23 +1,75 @@
 <mat-card>
-    <mat-card-title align="center">Register</mat-card-title>
-    <form class="example-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)">
-      <mat-card-content>
-        <mat-form-field class="full-width" appearance="fill">
-          <mat-label>Username</mat-label>
-          <input matInput formControlName="username">
-        </mat-form-field>
-        <mat-form-field class="full-width" appearance="fill">
-          <mat-label>Password</mat-label>
-          <input type="password" matInput formControlName="password">
-        </mat-form-field>
-        <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Company</mat-label>
-            <input matInput formControlName="company">
-          </mat-form-field>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button mat-raised-button color="primary" type="submit" align="center">Register</button>
-      </mat-card-actions>
-    </form>
-    <p>Already have an account ? log in here <a routerLink="/login">log in</a></p>
-  </mat-card>
+  <mat-card-title align="center">Register</mat-card-title>
+  <form class="example-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)">
+    <mat-card-content>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" required >
+        <mat-error *ngIf="firstName.hasError('required')">
+          First Name is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="firstName.hasError('minlength')">First Name must have at least 5 characters</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" required>
+        <mat-error *ngIf="lastName.hasError('required')">
+          Last Name is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="lastName.hasError('minlength')">Last Name must have at least 5 characters</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required type="email" placeholder="Ex. pat@example.com" (input)="onEmailInput()" >
+        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="email.invalid && !email.hasError('required') && !email.hasError('email')">email already exist</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password" required (input)="onPasswordInput()">
+        <mat-error *ngIf="password.hasError('required')">
+         Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill" required>
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput formControlName="confirmPassword" required (input)="onPasswordInput()">
+        <mat-error *ngIf="confirmPassword.hasError('required')">
+          Please confirm your <strong>password</strong>
+        </mat-error>
+        <mat-error *ngIf="confirmPassword.invalid && !confirmPassword.hasError('required')">Passwords don't match</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Phone</mat-label>
+        <span matPrefix>+216 &nbsp;</span>
+        <input matInput formControlName="phone" type="tel" placeholder="55-555-555">
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Company</mat-label>
+        <input matInput formControlName="company">
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Company Address</mat-label>
+        <input matInput formControlName="companyAddress">
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button mat-raised-button color="primary" type="submit" align="center" [disabled]="!registrationForm?.valid">Register</button>
+    </mat-card-actions>
+  </form>
+  <p>Already have an account ? log in here <a routerLink="/login">log in</a></p>
+</mat-card>

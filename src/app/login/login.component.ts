@@ -15,9 +15,10 @@ export class LoginComponent implements OnInit {
   constructor(private fb:FormBuilder, private _userService:UserService, private router:Router,
               private auth:AuthService) { }
   loginForm= this.fb.group({
-    username : [''],
+    email : [''],
     password : ['']
   })
+
   ngOnInit(): void {
   }
   onSubmit(user){
@@ -25,10 +26,11 @@ export class LoginComponent implements OnInit {
    console.log(foundUser);
    console.log(foundUser.length);
    if (foundUser.length > 0){
-    console.log('found');
-   /* this.auth.isLogged = true;*/
+    console.log(foundUser);
+    /* this.auth.isLogged = true;*/
     /*localStorage.setItem('token',"aaaaaa");*/
-    localStorage.setItem('token', JSON.stringify(foundUser));
+    localStorage.removeItem('token');
+    localStorage.setItem('token', JSON.stringify(foundUser[0]));
     this.router.navigate(['dashboard']);
    }else{
     alert('username or password are incorrects')

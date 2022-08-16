@@ -12,6 +12,8 @@ import { DashbordComponent } from './dashbord/dashbord.component';
 import { ArticleComponent } from './article/article.component';
 import { HttpClientModule} from '@angular/common/http';
 import { ArticlesComponent } from './articles/articles.component';
+import { UserProfilComponent } from './user-profil/user-profil.component';
+import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,11 @@ import { ArticlesComponent } from './articles/articles.component';
     RegisterComponent,
     DashbordComponent,
     ArticleComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    UserProfilComponent,
+    UserProfileEditComponent
   ],
-  entryComponents: [ArticleComponent],
+  entryComponents: [ArticleComponent, UserProfileEditComponent],
 
   imports: [
     BrowserModule,

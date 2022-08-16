@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Modifier Profile</h2>
+<form class="example-form" [formGroup]="editProfileForm" (ngSubmit)="onSubmit(editProfileForm.value)">
+<mat-dialog-content>
+   
+
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName">
+            <mat-error *ngIf="firstName.hasError('required')">
+                First Name is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="firstName.hasError('minlength')">First Name must have at least 5 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName"> 
+            <mat-error *ngIf="lastName.hasError('required')">
+                Last Name is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="lastName.hasError('minlength')">Last Name must have at least 5 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type ="password" matInput formControlName="password" required (input)="onPasswordInput()"> 
+            <mat-error *ngIf="password.hasError('required')">
+                Password is <strong>required</strong>
+               </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type ="password" formControlName="confirmPassword" required (input)="onPasswordInput()"> 
+            <mat-error *ngIf="confirmPassword.hasError('required')">
+                Please confirm your <strong>password</strong>
+              </mat-error>
+              <mat-error *ngIf="confirmPassword.invalid && !confirmPassword.hasError('required')">Passwords don't match</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone"> 
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Company</mat-label>
+            <input matInput formControlName="company"> 
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Company ddress</mat-label>
+            <input matInput formControlName="companyAddress"> 
+        </mat-form-field>
+
+    
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close type="submit" [disabled]="!editProfileForm?.valid">Save</button>
+</mat-dialog-actions>
+</form>

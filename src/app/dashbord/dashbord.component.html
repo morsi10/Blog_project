@@ -1,45 +1,78 @@
 <mat-toolbar class="navbar">
+
+    <button mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
     <div>My Blog</div>
-    <span><button mat-button mat-raised-button (click)="addArticle()" color="primary">Add article</button></span>
-    <span><button mat-button mat-raised-button (click)="viewArticles()" color="primary">View site</button></span>
-    <span><button mat-button mat-raised-button (click)="logout()" color="accent">Logout</button></span>
-    
+  
+  
+   
+    <img class="user-logo" src="{{currentUser.profilePhoto}}" [matMenuTriggerFor]="menu">
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>person_pin</mat-icon>
+        <span><a  (click)="ShowProfil()" color="accent">Show Profil</a></span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span><a  (click)="logout()" >Logout</a></span>
+      </button>  
+    </mat-menu>
   </mat-toolbar>
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
-  </mat-form-field>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef> Tilte </th>
-    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef> Description </th>
-    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="creationDate">
-    <th mat-header-cell *matHeaderCellDef> Creation Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.creationDate}} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-button mat-raised-button color="primary"  (click)="editArticle(element)">Edit</button>
-      <button mat-button mat-raised-button color="warn" (click)="deleteArticle(element)">Delete</button>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+  <mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="side">
+    <br>
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon>add_circle</mat-icon>
+         <a (click)="addArticle()" >Add article</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>remove_red_eye</mat-icon>
+          <a (click)="viewArticles()" >View site</a>
+         </mat-list-item>
+        
+        
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+      </mat-form-field>
+      
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+    
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Tilte </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+    
+    
+      <ng-container matColumnDef="creationDate">
+        <th mat-header-cell *matHeaderCellDef> Creation Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.creationDate}} </td>
+      </ng-container>
+    
+    
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button mat-raised-button color="primary"  (click)="editArticle(element)">Edit</button>
+          <button mat-button mat-raised-button color="warn" (click)="deleteArticle(element)">Delete</button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+ 
 
