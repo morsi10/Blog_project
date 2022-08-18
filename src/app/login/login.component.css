@@ -14,3 +14,10 @@ mat-card {
 mat-card-title{
     margin-bottom: 55px;
 }
+.remeber-checbox{
+    float: right;
+}
+
+.d-none{
+    display: none !important;
+}

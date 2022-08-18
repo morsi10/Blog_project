@@ -26,3 +26,10 @@ mat-sidenav-container{
     object-fit: cover;
     margin-left: auto;
 }
+.mat-menu-item.action-menu mat-icon{
+    font-size: 19px;
+    margin-right: 6px;
+}
+.delete-button{
+    margin-left: auto !important;
+}

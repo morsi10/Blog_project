@@ -11,7 +11,8 @@ import { passwordMatchValidator } from '../shared/Validator';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  
+  showPass;
   constructor(private fb:FormBuilder, private _userService:UserService, private router: Router,
               private _inputValidater: InputValidatorService) { }
   get firstName(){
@@ -41,13 +42,13 @@ export class RegisterComponent implements OnInit {
   registrationForm= this.fb.group({
     firstName : ['',[Validators.required , Validators.minLength(5)]],
     lastName : ['',[Validators.required,  Validators.minLength(5)]],
-    email : ['',[Validators.required,Validators.email]],
+    email : ['',[Validators.required,Validators.email,this._inputValidater.alreadyUsedEmailValidator]],
     password : ['',[Validators.required]],
     confirmPassword : ['',[Validators.required]],
     phone : [''],
     company : [''],
     companyAddress : ['']
-  }, {validator: [passwordMatchValidator, this._inputValidater.alreadyUsedEmailValidator]})
+  }, {validator: [passwordMatchValidator]})
   ngOnInit(): void {
   }
   onPasswordInput() {
@@ -57,10 +58,12 @@ export class RegisterComponent implements OnInit {
       this.confirmPassword.setErrors(null);
   }
   onEmailInput() {
-    if (this.registrationForm.hasError('emailExist'))
-      this.email.setErrors([{'emailExist': true}]);
-    else
-      this.email.setErrors(null);
+    
+     // this.email.setErrors([{'emailExist': true}]);
+      this.email.addValidators(this._inputValidater.alreadyUsedEmailValidator)
+    
+      
+   
   }
   onSubmit(user){
     debugger;
@@ -69,5 +72,14 @@ export class RegisterComponent implements OnInit {
     this._userService.AddUser(user);
     this.router.navigate(['login']);
   }
-
+  showPassword(input){
+    // input.type = input.type === 'password' ?  'text' : 'password';
+    if(input.type == 'password'){
+     input.type = 'text';
+    // this.showPass = true; 
+    }else{
+     input.type = 'password';
+    // this.showPass = false;
+    }
+   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ArticleService } from '../shared/article.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-article',
@@ -21,7 +22,7 @@ export class ArticleComponent implements OnInit {
   )
   constructor(private fb:FormBuilder, private _articleService:ArticleService, 
               @Inject(MAT_DIALOG_DATA) public data:any,
-              private http: HttpClient) { }
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if(this.data.action == 'edit'){
@@ -33,11 +34,13 @@ export class ArticleComponent implements OnInit {
   { 
     if(data.action == 'add'){
     this._articleService.AddArticle(article);
+    this._snackBar.open('item added', '', {"duration": 2000});
     }else if(data.action == 'edit'){
       article.id = data.row.id;
       article.creationDate = data.row.creationDate;
       article.username = data.row.username;
       this._articleService.editArticle(article);
+      this._snackBar.open('item edited', '', {"duration": 2000});
     }
   }
   onSelectFile(event){
@@ -54,14 +57,14 @@ export class ArticleComponent implements OnInit {
   }
  /* this.selectedFile = event.target.files[0];*/
   }
-  onUpload(){
+  /*onUpload(){
     const fd = new FormData();
         fd.append('image', this.selectedFile, this.selectedFile.name);
         this.http.post('/assets', fd)
           .subscribe(res => {
             console.log(res);
           });
-  }
+  }*/
 
 }
 

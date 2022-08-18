@@ -1,3 +1,6 @@
 .full-width {
     width: 100%;
 }
+.cancel-button{
+    margin-left: auto !important;
+}

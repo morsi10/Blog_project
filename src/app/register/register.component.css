@@ -11,3 +11,6 @@ mat-card {
 mat-card-title{
     margin-bottom: 55px;
 }
+.d-none{
+    display: none !important;
+}

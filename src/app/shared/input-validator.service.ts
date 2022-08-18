@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { User } from '../models/user';
 import { UserService } from './user.service';
 
@@ -9,14 +9,14 @@ import { UserService } from './user.service';
 export class InputValidatorService {
 
   constructor(private _userService:UserService) { }
- public alreadyUsedEmailValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
+ public alreadyUsedEmailValidator: ValidatorFn = (FormControl: FormControl): ValidationErrors | null => {
     let user:User[];
    
-    const email = formGroup.get('email');
-    if (email?.pristine && email?.untouched ){
+   // const email = formGroup.get('email');
+    if (FormControl?.pristine && FormControl?.untouched ){
       return null
     }else{
-      user = this._userService.FindUserByEmail(formGroup.get('email').value)
+      user = this._userService.FindUserByEmail(FormControl.value)
       console.log(user);
       if(user.length > 0){
         return {emailExist: true};   

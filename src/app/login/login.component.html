@@ -6,14 +6,18 @@
         <mat-label>Email</mat-label>
         <input matInput formControlName="email">
       </mat-form-field>
-      <mat-form-field class="full-width" appearance="fill">
+      <mat-form-field class="full-width password-input" appearance="fill">
         <mat-label>Password</mat-label>
-        <input type="password" matInput formControlName="password">
+        <input #passwordInput type="password" matInput formControlName="password">
+        <mat-icon matSuffix [class.d-none]="show" (click)="showPassword(passwordInput)">visibility</mat-icon>
+        <mat-icon matSuffix [class.d-none]="!show" (click)="showPassword(passwordInput)">visibility_off</mat-icon>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button mat-raised-button color="primary" type="submit" align="center">Login</button>
+      <mat-checkbox class="remeber-checbox" formControlName="remembered" color="primary">Remember me</mat-checkbox>
     </mat-card-actions>
   </form>
+  
   <p>Don't have an account ? <a routerLink="/register">Register here</a></p>
 </mat-card>

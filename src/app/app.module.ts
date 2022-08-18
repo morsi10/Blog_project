@@ -14,6 +14,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { ArticlesComponent } from './articles/articles.component';
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.
     ArticleComponent,
     ArticlesComponent,
     UserProfilComponent,
-    UserProfileEditComponent
+    UserProfileEditComponent,
+    PageNotFoundComponent
   ],
   entryComponents: [ArticleComponent, UserProfileEditComponent],
 
