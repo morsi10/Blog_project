@@ -26,7 +26,10 @@
     "zone.js": "~0.11.4",
     "@angular/cli": "~14.0.4",
     "@angular/compiler-cli": "^14.0.0",
-    "typescript": "~4.7.2"
+    "typescript": "~4.7.2",
+    "express":"*",
+    "body-parser":"*",
+    "bcrypt": "^0.8.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.0.4",
