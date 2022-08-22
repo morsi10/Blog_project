@@ -28,9 +28,14 @@ export class UserService {
    /*console.log(user.password);
     console.log(user);*/
     const userList: User[] = JSON.parse(localStorage.getItem('userList'));
-    const found = userList.filter(data => {
-      return data.email === user.email && data.password === user.password});
-      return found
+    if(userList !== null){
+      /*const found = userList.filter(data => {
+        return data.email === user.email && data.password === user.password});*/
+        return []
+    }else{
+      return [];
+     }
+    
   }
   getLoggedUser() : User{
     
