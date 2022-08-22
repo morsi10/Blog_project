@@ -31,7 +31,7 @@ export class UserService {
     if(userList !== null){
       const found = userList.filter(data => {
         return data.email === user.email && data.password === user.password});
-        return found
+        return found;
     }else{
       return [];
      }
